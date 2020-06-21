@@ -1,0 +1,113 @@
+<%- include('partials/head'); %>
+<%- include('partials/navigation') %>
+
+<style>
+  .news {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .li {
+    flex: 0 0 auto;
+  }
+
+  .close {
+    padding: 10px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    background: red;
+    border-radius: 3px;
+    box-shadow: 2px 2px 8px black;
+  }
+
+  .restar {
+    padding: 10px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    background: rgb(8, 161, 103);
+    border-radius: 3px;
+    box-shadow: 2px 2px 8px black;
+  }
+
+  #notification {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 200px;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .hidden {
+    display: none;
+  }
+</style>
+
+<div id="notification"
+  class="hidden text-center borderr-3 marginl-200 paddingt-20 marginb-20 paddingb-20 colorb-Blue-Green-Blue colort-white">
+  <p id="message" class="text-shadow"></p>
+  <button id="close-button" onClick="closeNotification()" class="close">Close</button>
+  <button id="restart-button" onClick="restartApp()" class="hidden restar">Restart</button>
+</div>
+
+<div class="borderr-3 marginl-200 paddingt-20 paddingb-20 colorb-GrenAndYellow colort-white">
+  <div class="paddingl-20 text-shadow">
+    <h1>Daily Updates</h1>
+  </div>
+</div>
+
+<% if (news) { %>
+<%news.reverse() %>
+<% news.forEach(function (res) { %>
+<div class="marginl-200 paddingt-20 borderr-3">
+
+  <div class="paddingl-20 paddingt-5 paddingb-5 colorb-youtube colort-white">
+    <h4 class="text-shadow"><%= res.title %></h4>
+  </div>
+
+  <div class="border-1 paddingl-50 paddingr-50">
+    <p class=""><%= res.body %></p>
+  </div>
+
+</div>
+<% }); %>
+<% } %>
+
+<script>
+  const { ipcRenderer } = require('electron');
+  const version = document.getElementById('version');
+  const notification = document.getElementById('notification');
+  const message = document.getElementById('message');
+  const restartButton = document.getElementById('restart-button');
+
+  ipcRenderer.send('app_version');
+  ipcRenderer.on('app_version', (event, arg) => {
+    ipcRenderer.removeAllListeners('app_version');
+    version.innerText = 'Version ' + arg.version;
+  });
+
+  ipcRenderer.on('update_available', () => {
+    ipcRenderer.removeAllListeners('update_available');
+    message.innerText = 'A new update is available. Downloading now...';
+    notification.classList.remove('hidden');
+  });
+
+  ipcRenderer.on('update_downloaded', () => {
+    ipcRenderer.removeAllListeners('update_downloaded');
+    message.innerText = 'Update Downloaded. It will be installed on restart. Restart now?';
+    restartButton.classList.remove('hidden');
+    notification.classList.remove('hidden');
+  });
+
+  function closeNotification() {
+    notification.classList.add('hidden');
+  }
+
+  function restartApp() {
+    ipcRenderer.send('restart_app');
+  }
+</script>

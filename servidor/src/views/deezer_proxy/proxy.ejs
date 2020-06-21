@@ -1,0 +1,56 @@
+<%- include('../partials/head'); %>
+<%- include('../partials/navigation') %>
+
+<div class="borderr-3 marginl-200 paddingt-20 paddingb-20 colorb-GrenAndYellow colort-white marginb-20">
+    <div class="paddingl-20">
+        <h1 class="text-shadow">Edit Proxy : <%=proxy.ip%></h1>
+    </div>
+</div>
+
+<div class="borderr-3 marginl-200 text-center colorb-gray colort-white paddingt-20 paddingb-20">
+    <form action="/deezer/editproxy/" method="POST">
+        <div>
+            <div>
+                <label for="name">Name</label>
+            </div>
+            <input type="text" name="name" class="text-center paddingt-5 paddingb-5" value="<%=proxy.name%>" required>
+            <input type="hidden" name="id" value="<%=proxy.id%>">
+            <br/>
+            <br/>
+        </div>
+        <div>
+            <div>
+                <label for="name">Username</label>
+            </div>
+            <input type="text" name="username" class="text-center paddingt-5 paddingb-5" value="<%=proxy.username%>" required>
+            <br/>
+            <br/>
+        </div>
+        <div>
+            <div>
+                <label for="name">Password</label>
+            </div>
+            <input type="password" name="password" class="text-center paddingt-5 paddingb-5" value="<%=proxy.password%>" required>
+            <br/>
+            <br/>
+        </div>
+        <div>
+            <div>
+                <label for="name">Ip</label>
+            </div>
+            <input type="text" name="ip" class="text-center paddingt-5 paddingb-5" value="<%=proxy.ip%>" required>
+            <br/>
+            <br/>
+        </div>
+        <div>
+            <div>
+                <label for="name">Port</label>
+            </div>
+            <input type="text" name="port" class="text-center paddingt-5 paddingb-5" value="<%=proxy.port%>" required>
+        </div>
+        <div>
+            </br>
+            <input type="submit" class="btn-7" value="Save">
+        </div>
+    </form>
+</div>

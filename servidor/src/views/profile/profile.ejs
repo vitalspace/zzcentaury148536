@@ -1,0 +1,34 @@
+<%- include('../partials/head'); %>
+<%- include('../partials/navigation') %>
+
+<div class="borderr-3 marginl-200 paddingt-20 paddingb-20 colorb-GrenAndYellow colort-white marginb-20">
+    <div class="paddingl-20">
+        <h1 class="text-shadow">Profile</h1>
+    </div>
+</div>
+
+    <% if (profile) { %>
+    <div class="borderr-3 marginl-200 text-center colorb-gray colort-white paddingt-20 paddingb-20">
+        <div>
+            <h4>Username: <%=profile.name%></h4>
+        </div>
+        <div>
+            <h4>Email: <%=profile.email%></h4>
+        </div>
+        <div>
+            <h4>Direction: <%=profile.direction%> <a href="/edit-direction" class="text-decoration-none colort-danger">Edit</a> </h4>
+        </div>
+        <div>
+            <h4>Spotify Points: <%=profile.spotify%></h4>
+        </div>
+        <div>
+            <h4>Deezer Points: <%=profile.deezer%></h4>
+        </div>
+        <div>
+            <h4>Lbry Points: <%=profile.lbry%></h4>
+        </div>
+        <div>
+            <h4><a href="/new-password" class="text-decoration-none btn-3">Change Password</a></h4>
+        </div>
+    </div>
+<% } %>

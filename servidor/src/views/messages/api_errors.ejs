@@ -1,0 +1,13 @@
+<% if (api_errors.length > 0) { %>
+    <div style="transition: 1.0s" class="colorb-danger marginl-200 paddingt-20 paddingb-20 api_errors">
+        <h3 class="colort-white text-center display-in-initial paddingl-20"><%= api_errors %> </h3>
+        <div class="float-right display-in-block paddingr-20">
+            <button class="btn-6" onclick="hide_api_errors()">X</button>
+        </div>
+    </div>
+<% } %>
+
+<script>
+    const api_errors = document.querySelector('.api_errors')
+    const hide_api_errors = () => api_errors.style.display = "none";
+</script>

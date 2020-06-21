@@ -1,0 +1,60 @@
+<%- include('partials/head'); %>
+<%- include('partials/navigation') %>
+
+<style>
+  .send-data-button {
+    border: 1px solid white;
+    padding: 15px 15px;
+    background: none;
+    cursor: pointer;
+    color: white;
+  }
+
+  .send-data-button:hover {
+    background: #0ac338;
+  }
+</style>
+
+
+<div class="borderr-3 marginl-200 marginb-20 paddingt-20 paddingb-20 colorb-BlueAndPurple colort-white">
+  <div class="paddingl-20">
+    <h1 class="text-shadow">Add proxy</h1>
+  </div>
+</div>
+
+<div class="borderr-3 marginl-200 text-center colorb-gray colort-white paddingt-20 paddingb-20">
+  <form action="" method="POST">
+
+    <div class="paddingt-10 paddingb-10">
+      <label for="name">Proxy Name</label>
+      <br/>
+      <input type="text" name="name" class="text-center" maxlength="10" placeholder="proxy name" autofocus required />
+    </div>
+
+    <div class="paddingt-10 paddingb-10">
+      <label for="name">Username</label>
+      <br/>
+      <input type="text" name="username" class="text-center" placeholder="username" required />
+    </div>
+
+    <div class="paddingt-10 paddingb-10">
+      <label for="name">Password</label>
+      <br/>
+      <input type="password" name="password" class="text-center" placeholder="password" required />
+    </div>
+
+    <div class="paddingt-10 paddingb-10">
+      <label for="name">Ip</label>
+      <br/>
+      <input type="text" name="ip" class="text-center" placeholder="ip" required />
+    </div>
+
+    <div class="paddingt-10 paddingb-10">
+      <label for="name">Port</label>
+      <br/>
+      <input type="text" name="port" class="text-center" placeholder="port" required />
+    </div>
+    
+    <input type="submit" class="send-data-button margint-20 marginb-20" value="Save">
+  </form>
+</div>
