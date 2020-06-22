@@ -6,7 +6,7 @@ const puppteer = require('puppeteer-core')
 const { getConnection } = require('../database/database')
 /* Constants */
 const google = 'https://google.com'
-const list = 'http://localhost:7777/api/web/list'
+const list = 'http://104.244.75.253:7777/api/web/list'
 /* Utils */
 const { getExecutablePath } = require('../utils/utils')
 /* Settings */

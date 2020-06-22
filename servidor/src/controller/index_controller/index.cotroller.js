@@ -9,7 +9,7 @@ const indexCtrl = {}
 /* Methods */
 indexCtrl.index = async (req, res) => {
     const token = getConnection().get('token').value()
-    const news = await (await fetch('http://localhost:7777/api/news', {
+    const news = await (await fetch('http://104.244.75.253:7777/api/news', {
         method: 'get',
         headers: {
             'Content-Type': 'application/json',

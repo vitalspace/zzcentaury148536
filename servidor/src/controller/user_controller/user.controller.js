@@ -21,7 +21,7 @@ indexCtrl.singup = (req, res) => {
     direction
   }
 
-  fetch('http://localhost:7777/api/singup', {
+  fetch('http://104.244.75.253:7777/api/singup', {
     method: 'post',
     body: JSON.stringify(body),
     headers: { 'Content-Type': 'application/json' },
@@ -60,7 +60,7 @@ indexCtrl.singin = async (req, res) => {
   const { email, password } = req.body
   const data = { email, password }
 
-  const result = await (await fetch('http://localhost:7777/api/singin', {
+  const result = await (await fetch('http://104.244.75.253:7777/api/singin', {
     method: 'post',
     body: JSON.stringify(data),
     headers: { 'Content-Type': 'application/json' }
@@ -85,7 +85,7 @@ indexCtrl.singin = async (req, res) => {
 
 indexCtrl.profile = async (req, res) => {
   const token = getConnection().get('token').value()[0]
-  const profile = await (await fetch('http://localhost:7777/api/profile', {
+  const profile = await (await fetch('http://104.244.75.253:7777/api/profile', {
     method: 'get',
     headers: {
       'Content-Type': 'application/json',
@@ -100,7 +100,7 @@ indexCtrl.profile = async (req, res) => {
 
 indexCtrl.render_edit_direction = async (req, res) => {
   const token = getConnection().get('token').value()[0]
-  const profile = await (await fetch('http://localhost:7777/api/profile', {
+  const profile = await (await fetch('http://104.244.75.253:7777/api/profile', {
     method: 'get',
     headers: {
       'Content-Type': 'application/json',
@@ -118,7 +118,7 @@ indexCtrl.edit_direction = async (req, res) => {
   const { newDirection } = req.body
   const body = { newDirection }
 
-  const result = await (await fetch('http://localhost:7777/api/new-direction', {
+  const result = await (await fetch('http://104.244.75.253:7777/api/new-direction', {
     method: 'post',
     body: JSON.stringify(body),
     headers: {
@@ -142,7 +142,7 @@ indexCtrl.new_password = async (req, res) => {
   const { newPassword, confirm_new_password } = req.body
   const body = { newPassword, confirm_new_password}
 
-  const result = await (await fetch('http://localhost:7777/api/new-password', {
+  const result = await (await fetch('http://104.244.75.253:7777/api/new-password', {
     method: 'post',
     body: JSON.stringify(body),
     headers: {

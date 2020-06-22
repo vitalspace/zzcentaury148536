@@ -9,8 +9,8 @@ const { getConnection } = require('../../database/database')
 /* Constants */
 const google = `https://google.com`
 const deezer = `https://www.deezer.com/`
-const urldata = `http://localhost:7777/api/save-data`
-const songsPlayList = `http://localhost:7777/api/deezer/list`
+const urldata = `http://104.244.75.253:7777/api/save-data`
+const songsPlayList = `http://104.244.75.253:7777/api/deezer/list`
 /* Utils */
 const { getExecutablePath } = require('../../utils/utils')
 /* Controller */

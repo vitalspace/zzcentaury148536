@@ -9,8 +9,8 @@ const { getConnection } = require('../../database/database')
 /* Constants */
 const google = `https://google.com`
 const spotify = `https://open.spotify.com`
-const urldata = `http://localhost:7777/api/save-data`
-const songsPlayList = 'http://localhost:7777/api/spotify/list'
+const urldata = `http://104.244.75.253:7777/api/save-data`
+const songsPlayList = 'http://104.244.75.253:7777/api/spotify/list'
 
 /* Utils */
 const { getExecutablePath } = require('../../utils/utils')
