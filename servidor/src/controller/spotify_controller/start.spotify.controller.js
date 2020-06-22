@@ -25,6 +25,7 @@ startCtrl.start = (req, res) => {
   const { reproductions, program, type, username, password, ip, port } = req.query
 
   if (program === 'manage' && !reproductions && !type) {
+    req.flash('api_success', 'Executing "MANAGE" program successfully.')
     run()
     async function run() {
       const executablePath = await getExecutablePath({});
@@ -47,6 +48,7 @@ startCtrl.start = (req, res) => {
 
   if (program === 'work' && reproductions && !type) {
     /* Run */
+    req.flash('api_success', 'Executing "WORK" program successfully.')
     run()
     async function run() {
       const executablePath = await getExecutablePath({});
@@ -77,6 +79,7 @@ startCtrl.start = (req, res) => {
   }
 
   if (program === 'manage' && type) { 
+    req.flash('api_success', 'Executing "MANAGE" program with Proxy successfully.')
     run()
     async function run() {
       const executablePath = await getExecutablePath({});
@@ -105,6 +108,7 @@ startCtrl.start = (req, res) => {
 
   if (program === 'work' && reproductions && type) { 
     /* Run */
+    req.flash('api_success', 'Executing "WORK" program with Proxy successfully.')
     run()
     async function run() {
       const executablePath = await getExecutablePath({});
@@ -164,6 +168,11 @@ async function getData(page, reproductions, browser) {
       }
       /* GoTo for list */
       await page.goto(track, { timeout: 0, waitUntil: "networkidle2" });
+
+      if(await page.$('button._2221af4e93029bedeab751d04fab4b8b-scss._1edf52628d509e6baded2387f6267588-scss') !== null){
+        console.log('Closing the browser')
+        await browser.close();
+      }
 
       await page.waitFor(5000)
 

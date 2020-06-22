@@ -5,8 +5,8 @@ const express = require('express')
 const flash = require('connect-flash')
 const session = require('express-session')
 const bodyparser = require('body-parser')
-const run = require('./functions/web')
-run()
+/* const run = require('./functions/web')
+run() */
 /* Execute Epress */
 const app = express()
 /* Settings */

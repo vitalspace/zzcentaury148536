@@ -74,7 +74,7 @@ async function getData(page, browser) {
 
         /* Choose if you like it or not */
         if (await page.$('iframe[src="about:blank"]') !== null) {
-          const obj = [{ action: 'yes' }, { action: 'yes' }, { action: 'no' }, { action: 'no' }, { action: 'no' }, { action: 'no' }]
+          const obj = [{ action: 'yes' }, { action: 'no' }, { action: 'no' }, { action: 'no' }, { action: 'no' }, { action: 'no' }]
           const values = Object.values(obj);
           const res = values[parseInt(Math.random() * values.length)]
           console.log('pasando por adsterra', res.action)
@@ -87,7 +87,7 @@ async function getData(page, browser) {
         } 
 
         if (await page.$('iframe[src="https://cdn.tubecorp.com/i/b.html?spot=1056&src=512777893&pid=27340&width=728&height=90&spaceid=861"]') !== null) { 
-          const obj = [{ action: 'yes' }, { action: 'yes' }, { action: 'no' }, { action: 'no' }, { action: 'no' }, { action: 'no' }]
+          const obj = [{ action: 'yes' }, { action: 'no' }, { action: 'no' }, { action: 'no' }, { action: 'no' }, { action: 'no' }]
           const values = Object.values(obj);
           const res = values[parseInt(Math.random() * values.length)]
           console.log('pasando por tube', res.action)

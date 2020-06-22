@@ -93,4 +93,15 @@
   <a href="/deezer">Deezer</a>
   <a href="/lbry">lbry</a>
   <a href="/profile">Profile</a>
+  <p id="version" class="text-center colort-white"></p>
 </div>
+<script>
+  const { ipcRenderer } = require('electron');
+  const version = document.getElementById('version');
+  
+  ipcRenderer.send('app_version');
+  ipcRenderer.on('app_version', (event, arg) => {
+    ipcRenderer.removeAllListeners('app_version');
+    version.innerHTML = `<span class="text-shadow">Version ${arg.version} </span>`;
+  });
+</script>
