@@ -1,0 +1,27 @@
+<%- include('../partials/head'); %>
+<%- include('../partials/navigation') %>
+<%- include("../messages/api_errors"); %>
+<%- include("../messages/api_success"); %>
+
+
+<div class="borderr-3 marginl-200 paddingt-20 paddingb-20 colorb-GrenAndYellow colort-white marginb-20">
+  <div class="paddingl-20">
+    <h1 class="text-shadow">New direction</h1>
+  </div>
+</div>
+
+<div class="borderr-3 marginl-200 text-center colorb-gray colort-white paddingt-20 paddingb-20">
+  <form action="/edit-direction" method="POST">
+    <div>
+      <label for="newDirection">New direction</label>
+      <br/>
+      <br/>
+      <input type="text" name="newDirection" class="text-center paddingt-5 paddingb-5" value="<%=profile.direction%>"
+        required>
+    </div>
+    <div>
+      </br>
+      <input type="submit" class="btn-7" value="Save">
+    </div>
+  </form>
+</div>

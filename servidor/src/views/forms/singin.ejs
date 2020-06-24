@@ -1,0 +1,21 @@
+<%- include('../partials/head'); %>
+<%- include("../messages/errors"); %>
+<%- include("../messages/messages"); %>
+
+<body class="colorb-qepal ">
+  <div class="border-1 borderr-3 center-things text-center paddingt-50 paddingr-50 paddingl-50 paddingb-50 colorb-gray">
+    <h1 class="colort-white">Singin</h1>
+    <form action="/singin" method="POST">
+      <div class="paddingt-20 paddingb-20">
+        <input type="email" name="email" class="border-1 paddingt-5 paddingb-5 text-center" placeholder="email" autofocus required />
+      </div>
+      <div class="paddingt-20 paddingb-20">
+        <input type="password" name="password" class="border-1 paddingt-5 paddingb-5 text-center" placeholder="password" required>
+      </div>
+      <div class="paddingt-20 paddingb-20">
+        <input type="submit" value="Login" class="btn-7">
+      </div>
+    </form>
+    <a href="/singup" class="colort-white text-decoration-none">Singup</a>
+  </div>
+</body>

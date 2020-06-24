@@ -1,0 +1,251 @@
+<%- include('partials/head'); %>
+<%- include('partials/navigation') %>
+<%- include("messages/api_errors"); %>
+<%- include("messages/api_success"); %>
+
+<style>
+  /* Style the tab */
+  .tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+  }
+
+  /* Style the buttons inside the tab */
+  .tab button {
+    background-color: inherit;
+    color: white;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    font-size: 17px;
+  }
+
+  /* Change background color of buttons on hover */
+  .tab button:hover {
+    transition: 0.3s;
+    background-color: #4b7d9e;
+  }
+
+  /* Create an active/current tablink class */
+  .tab button.active {
+    background: linear-gradient(279deg, rgba(198, 136, 171, 1) 29%, rgba(0, 188, 255, 1) 79%);
+  }
+
+  /* Style the tab content */
+  .tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccccccb9;
+    border-top: none;
+  }
+
+  /* ///////////////////////////// */
+  .add-user-button {
+    border: 1px solid rgb(255, 255, 255);
+    text-decoration: none;
+    padding: 5px 20px;
+    background: none;
+    transition: 0.5s;
+    cursor: pointer;
+    font-size: 50px;
+    color: rgb(255, 255, 255);
+  }
+
+  .add-user-button:hover {
+    border: 1px solid #9b04a0;
+    color: white;
+    background: linear-gradient(140deg, rgba(255, 255, 255, 1) 0%, rgba(221, 31, 96, 0.9615519662921348) 71%);
+  }
+
+  .actions-start {
+    background: rgba(4, 134, 148, 0.534);
+    border: 1px solid white;
+    padding: 13px 10px;
+    cursor: pointer;
+    transition: 0.5s;
+    text-decoration: none;
+    color: white;
+    font-size: 12px;
+  }
+
+  .actions-start:hover {
+    background: #1442d6;
+    border: 1px solid #000000;
+  }
+
+  .actions-delete {
+    background: rgba(255, 0, 0, 0.698);
+    border: 1px solid white;
+    padding: 13px 13px;
+    cursor: pointer;
+    transition: 0.5s;
+    text-decoration: none;
+    color: white;
+    font-size: 12px;
+  }
+
+  .actions-delete:hover {
+    border: 1px solid #000000;
+    background: rgb(255, 0, 0);
+  }
+
+  .button-add-user {
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    box-shadow: 1px 1px 5px black;
+    cursor: pointer;
+    background: #50e256;
+    margin-left: 10px;
+  }
+
+  .button-add-user:hover {
+    transition: 0.3s;
+    border: 1px solid #ccc;
+    background: linear-gradient(207deg, rgba(217, 132, 220, 1) 0%, rgba(22, 212, 51, 1) 81%);
+  }
+
+  .button-delte-user {
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    box-shadow: 1px 1px 5px black;
+    cursor: pointer;
+    background: #ec4343fd;
+    margin: 0 5px;
+  }
+
+  .button-delte-user:hover {
+    transition: 0.3s;
+    border: 1px solid #ccc;
+    background: linear-gradient(207deg, rgba(111, 184, 232, 1) 0%, rgba(212, 22, 22, 1) 81%);
+  }
+
+  .button-edit-user {
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    box-shadow: 1px 1px 5px black;
+    cursor: pointer;
+    background: #366ed4fd;
+  }
+
+  .button-edit-user:hover {
+    transition: 0.3s;
+    border: 1px solid #ccc;
+    background: linear-gradient(207deg, rgba(232,111,228,1) 0%, rgba(30,22,212,1) 81%);
+  }
+
+  table {
+    border-collapse: collapse;
+  }
+
+  th,
+  td {
+    border: 1px solid #ccc;
+  }
+</style>
+
+<div class="borderr-3 marginl-200 marginb-20 paddingt-20 paddingb-20 colorb-BlueAndPurple colort-white">
+  <div class="paddingl-20">
+    <h1 class="text-shadow">Spotify</h1>
+  </div>
+
+  <div class="text-center">
+    <h3 class="text-shadow">Add Proxy</h3>
+    <a class="add-user-button box-shadow" href="/spotify/addproxy">+</a>
+  </div>
+</div>
+
+
+<% if(spotify_data.length > 0) { %>
+<div class="tab colorb-gray borderr-3 marginl-200">
+  <% spotify_data.map(elem => {%>
+  <button class="tablinks" onclick="openCity(event, '<%= elem.id %>')" id="defaultOpen"><%= elem.name %></button>
+  <% }) %>
+</div>
+
+
+<% spotify_data.map(elem => {%>
+<div id="<%=elem.id%>" class="tabcontent marginl-200">
+  <h2 class="text-shadow colort-white"><%= elem.name %></h2>
+  <p class="text-decoration-none>
+      <span class=" text-decoration-none text-shadow colort-white"><%= elem.type %> : <%= elem.ip %></span>
+    <% if(elem.type === 'local') {%>
+    <a href="/spotify/adduser/<%=elem.id%>" class="text-decoration-none button-add-user">+</a>
+    <% } else { %>
+    <a href="/spotify/addproxyuser/<%=elem.id%>" class="text-decoration-none button-add-user">+</a>
+    <a href="/spotify/deleteproxy/<%=elem.id%>" class="text-decoration-none button-delte-user">x</a>
+    <a href="/spotify/editproxy/<%= elem.id %>" class="text-decoration-none button-edit-user">edit</a>
+    <% } %>
+  </p>
+
+  <% if(elem.accounts.length >= 1) {%>
+  <table class="margin-auto">
+    <tr>
+      <th class="text-shadow colort-white">User</th>
+      <th class="text-shadow colort-white">Reproductions</th>
+      <th class="text-shadow colort-white">Work</th>
+      <th class="text-shadow colort-white">Acction</th>
+    </tr>
+    <% elem.accounts.map(e => { %>
+    <tr>
+      <td>
+        <p class="text-center"><img src="<%=e.img %>" class="card-user-2 card-user-shadow-2" alt="" width="50"
+            height="50"></p>
+        <p class="text-center"><a href="/spotify/edituser/<%= elem.id %>/<%= e.id %>" class="text-decoration-none text-shadow colort-white" title="Modify User"><%=e.name %></a></p>
+      </td>
+      <td>
+        <form method="GET" action="/spotify/start/<%= e.id %>/<%= e.name %>">
+          <input type="number" name="reproductions" class="text-center marginl-10 marginr-20 text-input-1"
+            id="dailyExtractions" placeholder="250" autofocus title="">
+      </td>
+      <td>
+        <select name="program" id="program" title="Select the type of program you want to run."
+          class="marginl-10 marginr-20 text-input-1">
+          <option value="manage" class="">Manage</option>
+          <option value="work">Work</option>
+        </select>
+
+      </td>
+      <% if(elem.type === 'proxy') { %>
+      <input type="hidden" name="type" value="<%= elem.type %>">
+      <input type="hidden" name="username" value="<%= elem.username %>">
+      <input type="hidden" name="password" value="<%= elem.password %>">
+      <input type="hidden" name="ip" value="<%= elem.ip  %>">
+      <input type="hidden" name="port" value="<%= elem.port %>">
+      <% } %>
+      <td>
+        <input type="submit" value="►" class="actions-start" title="Start the program.">
+        </form>
+        <a href="/spotify/deleteuser/<%= elem.id %>/<%= e.id %>"
+          class="actions-delete text-decoration-none colort-white" title="<%= e.name %>.">X</a>
+      </td>
+    </tr>
+    <% }) %>
+  </table>
+  <% } %>
+
+</div>
+<% }) %>
+<% } %>
+
+<script>
+  const openCity = (evt, cityName) => {
+    let i, tabcontent, tablinks;
+    tabcontent = document.querySelectorAll(".tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.querySelectorAll(".tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+  // Get the element with id="defaultOpen" and click on it
+  document.getElementById("defaultOpen").click();
+</script>
