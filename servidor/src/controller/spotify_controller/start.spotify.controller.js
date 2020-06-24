@@ -64,7 +64,7 @@ startCtrl.start = (req, res) => {
         args: [
           `--app=${google}`,
           '--window-size=1,1',
-          //'--disable-audio-output',
+          '--disable-audio-output',
           '--disable-background-timer-throttling',
           '--disable-backgrounding-occluded-windows',
           '--disable-renderer-backgrounding'
